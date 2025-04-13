@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Annu ❤️ Pankaj Wedding Invitation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: url("Home.jpg") repeat center center fixed;
+        background-size: cover;
+        animation: fadeIn 1s ease-in;
+      }
+
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.4);
+        min-height: 100vh;
+        width: 100%;
+        padding: 40px 15px;
+        box-sizing: border-box;
+      }
+
+      .container {
+        text-align: center;
+        padding: 40px 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        max-width: 1100px;
+        margin: auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        font-size: 50px;
+        color: #e91e63;
+        animation: bounce 1.5s infinite;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 15px;
+      }
+
+      p {
+        font-size: 18px;
+        color: #444;
+        margin: 5px 0;
+      }
+
+      .countdown {
+        font-size: 26px;
+        margin: 25px 0;
+        color: #ff5722;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .gallery img {
+        width: 100%;
+        max-width: 300px;
+        margin: 10px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.5s;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 16px 32px;
+        background: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 16px;
+        transition: 0.3s;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        margin: 10px 0;
+      }
+
+      .btn:hover {
+        background: #45a049;
+        transform: translateY(-5px);
+      }
+
+      footer {
+        margin-top: 40px;
+        font-size: 16px;
+        color: #ddd;
+        text-align: center;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* ✅ Responsive CSS */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 36px;
+        }
+
+        h2 {
+          font-size: 24px;
+        }
+
+        .countdown {
+          font-size: 20px;
+        }
+
+        .btn {
+          font-size: 15px;
+          padding: 14px 28px;
+        }
+
+        .gallery img {
+          max-width: 90%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 30px 15px;
+        }
+
+        h1 {
+          font-size: 28px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        p {
+          font-size: 16px;
+        }
+
+        .btn {
+          width: 100%;
+          padding: 14px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay">
+      <div class="container">
+        <h1>Annu ❤️ Pankaj</h1>
+        <h2>Wedding Invitation</h2>
+        <p>You are cordially invited to celebrate our wedding.</p>
+        <p><strong>Date:</strong> 30th April 2025</p>
+        <p><strong>Venue:</strong> Singhia Ghat, Samastipur</p>
+
+        <div class="countdown" id="countdown"></div>
+
+        <h2>Shaadi ki Shubh Bela 🌹</h2>
+        <p style="font-style: italic; font-size: 20px; color: #e91e63">
+          "Khushiyon bhare palon ka hai yeh tyohar, <br />
+          Aaiye milkar banaiye is din ko yaadgaar... 🎉"
+        </p>
+
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <img src="Couple.jpg" alt="Couple Image" />
+          <img src="Home.jpg" alt="Wedding Venue" />
+        </div>
+
+        <div style="margin-top: 30px">
+          <a
+            href="https://wa.me/917808874974?text=RSVP%20for%20Annu%20and%20Pankaj%20Wedding"
+            class="btn"
+            target="_blank"
+            >Confirm RSVP</a
+          >
+        </div>
+
+        <div style="margin-top: 20px">
+          <a
+            href="https://www.instagram.com/its_time_to_wedding?igsh=MTQ5dzZmZ20xNmYzcA=="
+            class="btn"
+            target="_blank"
+            style="background: #e1306c"
+            >📸 Follow Us on Instagram</a
+          >
+        </div>
+      </div>
+
+      <footer>
+        <p>With love, Annu & Pankaj 💕</p>
+      </footer>
+    </div>
+
+    <script>
+      const weddingDate = new Date("2025-04-30T00:00:00").getTime();
+      const countdown = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById(
+          "countdown"
+        ).innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        if (distance < 0) {
+          clearInterval(countdown);
+          document.getElementById("countdown").innerHTML = "Wedding Time! 🎉";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
