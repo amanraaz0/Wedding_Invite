@@ -87,11 +87,23 @@
         transition: 0.3s;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         margin: 10px 0;
+        cursor: pointer;
       }
 
       .btn:hover {
         background: #45a049;
         transform: translateY(-5px);
+      }
+
+      input,
+      select {
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        margin: 10px 0;
+        width: 80%;
+        max-width: 300px;
+        font-size: 16px;
       }
 
       footer {
@@ -120,25 +132,20 @@
         }
       }
 
-      /* ✅ Responsive CSS */
       @media (max-width: 768px) {
         h1 {
           font-size: 36px;
         }
-
         h2 {
           font-size: 24px;
         }
-
         .countdown {
           font-size: 20px;
         }
-
         .btn {
           font-size: 15px;
           padding: 14px 28px;
         }
-
         .gallery img {
           max-width: 90%;
         }
@@ -148,19 +155,15 @@
         .container {
           padding: 30px 15px;
         }
-
         h1 {
           font-size: 28px;
         }
-
         h2 {
           font-size: 20px;
         }
-
         p {
           font-size: 16px;
         }
-
         .btn {
           width: 100%;
           padding: 14px 0;
@@ -191,15 +194,29 @@
           <img src="Home.jpg" alt="Wedding Venue" />
         </div>
 
+        <!-- RSVP Button -->
         <div style="margin-top: 30px">
-          <a
-            href="https://wa.me/917808874974?text=RSVP%20for%20Annu%20and%20Pankaj%20Wedding"
-            class="btn"
-            target="_blank"
-            >Confirm RSVP</a
-          >
+          <button class="btn" onclick="openForm()">Confirm RSVP</button>
         </div>
 
+        <!-- RSVP Form -->
+        <div id="rsvpForm" style="display: none; margin-top: 20px">
+          <input
+            type="text"
+            id="guestName"
+            placeholder="Your Name"
+            required
+          /><br />
+          <select id="attendance">
+            <option value="Yes">Yes, I will attend</option>
+            <option value="No">Sorry, I can't attend</option></select
+          ><br />
+          <button class="btn" onclick="submitRSVP()">
+            Send RSVP on WhatsApp
+          </button>
+        </div>
+
+        <!-- Instagram -->
         <div style="margin-top: 20px">
           <a
             href="https://www.instagram.com/its_time_to_wedding?igsh=MTQ5dzZmZ20xNmYzcA=="
@@ -216,7 +233,23 @@
       </footer>
     </div>
 
+    <!-- Music -->
+    <audio id="bg-music" autoplay loop>
+      <source src="wedding_music.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <!-- Scripts -->
     <script>
+      // Music Play (if autoplay blocked)
+      document.addEventListener("click", () => {
+        const audio = document.getElementById("bg-music");
+        if (audio.paused) {
+          audio.play().catch((e) => console.log("Autoplay blocked:", e));
+        }
+      });
+
+      // Countdown
       const weddingDate = new Date("2025-04-30T00:00:00").getTime();
       const countdown = setInterval(() => {
         const now = new Date().getTime();
@@ -235,6 +268,27 @@
           document.getElementById("countdown").innerHTML = "Wedding Time! 🎉";
         }
       }, 1000);
+
+      // RSVP form toggle
+      function openForm() {
+        document.getElementById("rsvpForm").style.display = "block";
+      }
+
+      // Send RSVP on WhatsApp
+      function submitRSVP() {
+        const name = document.getElementById("guestName").value.trim();
+        const attendance = document.getElementById("attendance").value;
+
+        if (name === "") {
+          alert("Please enter your name.");
+          return;
+        }
+
+        const message = `RSVP for Annu & Pankaj Wedding\nName: ${name}\nAttending: ${attendance}`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappURL = `https://wa.me/917808874974?text=${encodedMessage}`;
+        window.open(whatsappURL, "_blank");
+      }
     </script>
   </body>
 </html>
